@@ -4,6 +4,3 @@ services:
     runtime: python
     buildCommand: ""
     startCommand: "python bot.py"
-    envVars:
-      - key: API_TOKEN
-        value: 7792258020:AAG3Sy9ht5_4Tgdz3pSXBE-dYjjrIJqf2xk
