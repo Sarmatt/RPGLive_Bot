@@ -7,7 +7,7 @@ from aiogram.filters import Command
 import asyncio
 import os
 
-API_TOKEN = '7792258020:AAG3Sy9ht5_4Tgdz3pSXBE-dYjjrIJqf2xk'  # ← Замінити на свій токен
+API_TOKEN = API_TOKEN = os.getenv("API_TOKEN")
 WEBAPP_URL = 'https://rpglive.xyz/'
 
 # Ініціалізація бота
