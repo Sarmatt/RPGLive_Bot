@@ -5,12 +5,10 @@ from aiogram.types import WebAppInfo, InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.enums.parse_mode import ParseMode
 from aiogram.filters import Command
 import asyncio
-import os
 
-API_TOKEN = '7792258020:AAG3Sy9ht5_4Tgdz3pSXBE-dYjjrIJqf2xk'  # ← Замінити на свій токен
+API_TOKEN = '7792258020:AAG3Sy9ht5_4Tgdz3pSXBE-dYjjrIJqf2xk'
 WEBAPP_URL = 'https://rpglive.xyz/'
 
-# Ініціалізація бота
 bot = Bot(
     token=API_TOKEN,
     default=DefaultBotProperties(parse_mode=ParseMode.HTML)
@@ -21,7 +19,7 @@ dp = Dispatcher(storage=MemoryStorage())
 @dp.message(Command("start"))
 async def start_handler(message: types.Message):
     keyboard = [
-        [InlineKeyboardButton(text="🎮 Play", web_app=WebAppInfo(url=WEBAPP_URL))],
+        [InlineKeyboardButton(text="Play", web_app=WebAppInfo(url=WEBAPP_URL))],
     ]
 
     await message.answer(
