@@ -1,15 +1,16 @@
-import asyncio
-from aiogram import Bot, Dispatcher, types
-from aiogram.enums import ParseMode
-from aiogram.types import WebAppInfo, ReplyKeyboardMarkup, KeyboardButton
-from aiogram.filters import Command
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.client.default import DefaultBotProperties
+from aiogram import Bot, Dispatcher, types, F
+from aiogram.types import WebAppInfo, InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.enums.parse_mode import ParseMode
+from aiogram.filters import Command
+import asyncio
+import os
 
-API_TOKEN = '8087096191:AAGpWlYrE0oXQJhHr4bpjLw9T7mVrSrd9Fo'
+API_TOKEN = '7792258020:AAG3Sy9ht5_4Tgdz3pSXBE-dYjjrIJqf2xk'  # ← Замінити на свій токен
 WEBAPP_URL = 'https://rpglive.xyz/'
 
-# Нова структура ініціалізації Bot
+# Ініціалізація бота
 bot = Bot(
     token=API_TOKEN,
     default=DefaultBotProperties(parse_mode=ParseMode.HTML)
@@ -19,13 +20,14 @@ dp = Dispatcher(storage=MemoryStorage())
 
 @dp.message(Command("start"))
 async def start_handler(message: types.Message):
-    keyboard = ReplyKeyboardMarkup(
-        resize_keyboard=True,
-        keyboard=[
-            [KeyboardButton(text="Грати!", web_app=WebAppInfo(url=WEBAPP_URL))]
-        ]
+    keyboard = [
+        [InlineKeyboardButton(text="🎮 Play", web_app=WebAppInfo(url=WEBAPP_URL))],
+    ]
+
+    await message.answer(
+        "Press the button to start Play:",
+        reply_markup=InlineKeyboardMarkup(inline_keyboard=keyboard)
     )
-    await message.answer("Привіт! Натисни кнопку нижче, щоб почати гру 🎮", reply_markup=keyboard)
 
 async def main():
     await dp.start_polling(bot)
